@@ -1,0 +1,36 @@
+# g mancini apr 18
+
+CC=gcc
+CFLAGS= -std=c99 -fPIC
+OPTFLAGS=-O3 -ffast-math -march=native 
+LDFLAGS=-lm 
+SHELL   = /bin/sh
+OBJECTS  = mandelbrot.o
+TARGET   = mandelbrot.exe
+
+ifneq ($(thread),)
+	CFLAGS  += -DOMP -fopenmp
+	LDFLAGS += -fopenmp 
+endif
+
+
+all: $(TARGET) 
+
+debug: CXXFLAGS += -DDEBUG -g 
+debug: CFLAGS  += -DDEBUG -g
+debug: $(TARGET) 
+
+opt: CFLAGS += $(OPTFLAGS)
+opt: CXXFLAGS += $(OPTFLAGS)
+opt: $(TARGET)
+
+$(TARGET): $(OBJECTS)
+	$(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS)
+	
+%.o : %.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+.PHONY: clean	
+clean:
+	rm -f $(TARGET) $(OBJECTS)
+

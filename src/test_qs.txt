@@ -1,0 +1,52 @@
+===================== LAST
+
+[g.mancini@zama src] gcc -O2 -march=native -mtune=native -msse4.2 -Wall quick_sort_last.c -fopenmp -lm -lgsl -lgslcblas -I/usr/include/gsl/
+[g.mancini@zama src] OMP_NUM_THREADS=1 ./a.out 5000000Generating 5000000 random integers in[0,5000000]
+Sorted in 0.704652 with 1 threads
+[g.mancini@zama src] OMP_NUM_THREADS=2 ./a.out 5000000
+Generating 5000000 random integers in[0,5000000]
+Sorted in 0.362496 with 2 threads
+[g.mancini@zama src] OMP_NUM_THREADS=4 ./a.out 5000000
+Generating 5000000 random integers in[0,5000000]
+Sorted in 0.219514 with 4 threads
+[g.mancini@zama src] OMP_NUM_THREADS=8 ./a.out 5000000
+Generating 5000000 random integers in[0,5000000]
+Sorted in 0.277928 with 8 threads
+[g.mancini@zama src] gcc -O2 -march=native -mtune=native -msse4.2 -Wall quick_sort_last.c -fopenmp -lm -lgsl -lgslcblas -I/usr/include/gsl/ -DVRB
+[g.mancini@zama src] OMP_NUM_THREADS=8 ./a.out 5000000Generating 5000000 random integers in[0,5000000]
+Sorted in 0.247825 with 8 threads
+Sorted array:
+0 0 1 2 2 4 5 7 7 8 8 10 14 14 15 15 15 16 18 20 
+4999974 4999974 4999976 4999977 4999977 4999979 4999983 4999986 4999986 4999986 4999988 4999988 4999989
+ 4999991 4999991 4999993 4999995 4999995 4999996 4999997 
+ 
+=============== MEDIAN
+[g.mancini@zama src] OMP_NUM_THREADS=1 ./a.out 500000Generating 500000 random integers in[0,500000]
+Sorted in 0.064823 with 1 threads
+[g.mancini@zama src] OMP_NUM_THREADS=1 ./a.out 5000000
+Generating 5000000 random integers in[0,5000000]
+Sorted in 0.719289 with 1 threads
+[g.mancini@zama src] OMP_NUM_THREADS=1 ./a.out 20000000
+Generating 20000000 random integers in[0,20000000]
+Sorted in 2.883129 with 1 threads
+[g.mancini@zama src] OMP_NUM_THREADS=2 ./a.out 20000000
+Generating 20000000 random integers in[0,20000000]
+Sorted in 1.556123 with 2 threads
+[g.mancini@zama src] OMP_NUM_THREADS=4 ./a.out 20000000
+Generating 20000000 random integers in[0,20000000]
+Sorted in 0.864936 with 4 threads
+[g.mancini@zama src] OMP_NUM_THREADS=8 ./a.out 20000000
+Generating 20000000 random integers in[0,20000000]
+Sorted in 0.705602 with 8 threads
+[g.mancini@zama src] OMP_NUM_THREADS=1 ./a.out 5000000 
+Generating 5000000 random integers in[0,5000000]
+Sorted in 0.718394 with 1 threads
+[g.mancini@zama src] OMP_NUM_THREADS=2 ./a.out 5000000
+Generating 5000000 random integers in[0,5000000]
+Sorted in 0.364519 with 2 threads
+[g.mancini@zama src] OMP_NUM_THREADS=4 ./a.out 5000000
+Generating 5000000 random integers in[0,5000000]
+Sorted in 0.203031 with 4 threads
+[g.mancini@zama src] OMP_NUM_THREADS=8 ./a.out 5000000
+Generating 5000000 random integers in[0,5000000]
+Sorted in 0.190169 with 8 threads

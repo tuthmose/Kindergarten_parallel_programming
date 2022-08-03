@@ -1,0 +1,32 @@
+CC=/usr/local/gcc-7.3.0/bin/gcc
+CFLAGS= -std=c99 -Wall -fopenmp
+OFLAGS= -O2
+LDFLAGS=-lm -fopenmp -L/usr/local/gcc-7.3.0/lib64
+CPPFLAGS=-I/usr/local/gcc-7.3.0/include
+SHELL   = /bin/sh
+OBJECTS  = matmul_test.o matset.o matmul_blas.o matprint.o
+TARGET   = matmul.exe
+
+ifneq ($(opt),)
+	CFLAGS  += $(OFLAGS)
+endif
+
+# first target: run by default if no target given
+all: $(TARGET) 
+
+# dependencies of TARGET took from variable name
+# give dependencies then recipe after tab    
+$(TARGET): $(OBJECTS)
+	$(CC) -o $(TARGET) $(OBJECTS) $(LDFLAGS)
+	
+#pattern rule: %.o matches any .o file (target) and %.c any .c file (prerequisite); 
+# target and prerequisite must match
+# $< and $@ are automatic variables for prerequisites and targets    
+%.o : %.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) $< -o $@
+
+#phony targets: do not create files; run every time a target is updated
+# unless in PHONY list    
+.PHONY: clean	
+clean:
+	rm -f $(TARGET) $(OBJECTS) *.s 
