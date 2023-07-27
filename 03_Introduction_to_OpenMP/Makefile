@@ -1,6 +1,3 @@
-CC=gcc
-CXX=g++
-FC=gfortran
 CXXFLAGS= -Wall -fopenmp
 OFLAGS= -O2
 LDFLAGS=-lm -fopenmp
@@ -24,17 +21,34 @@ serial: integral.o eval_func.o
 
 openmp: integral_omp.o eval_func.o
 	$(CXX) -o integral.exe integral_omp.o eval_func.o $(LDFLAGS)
-    
-openmp_pad: integral_omp_pad.o eval_func.o
-	$(CXX) -o integral.exe integral_omp_pad.o eval_func.o $(LDFLAGS)    
 
+openmp_pad: integral_omp_pad.o eval_func.o
+	$(CXX) -o integral.exe integral_omp_pad.o eval_func.o $(LDFLAGS)
+	
+openmp_for: integral_omp_for.o eval_func.o
+	$(CXX) -o integral.exe integral_omp_for.o eval_func.o $(LDFLAGS)
+	
+openmp_red: integral_omp_red.o eval_func.o
+	$(CXX) -o integral.exe integral_omp_red.o eval_func.o $(LDFLAGS)
+	
+openmp_task: integral_omp_task.o eval_func.o
+	$(CXX) -o integral.exe integral_omp_task.o eval_func.o $(LDFLAGS)	
+	
+openmp_task_dac: integral_omp_task_dac.o eval_func.o
+	$(CXX) -o integral.exe integral_omp_task_dac.o eval_func.o $(LDFLAGS)	    
+    
 f95_serial: integral.fo eval_func.fo
 	$(FC) -o integral.exe integral.fo eval_func.fo $(LDFLAGS)
 	
 f95_omp: integral_omp.fo eval_func.fo
 	$(FC) -o integral.exe integral_omp.fo eval_func.fo $(LDFLAGS)
 	
+f95_omp_for: integral_omp_for.fo eval_func.fo
+	$(FC) -o integral.exe integral_omp_for.fo eval_func.fo $(LDFLAGS)
+	
 integral_omp.fo: eval_func.fo
+
+integral_omp_for.fo: eval_func.fo
 
 integral.fo: eval_func.fo 
 

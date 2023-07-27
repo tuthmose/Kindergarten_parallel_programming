@@ -29,6 +29,13 @@ endif
 FFLAGS = $(CXXFLAGS)
 CFLAGS = $(CXXFLAGS)
 
+EXES = $(basename $(wildcard *.c) $(wildcard *.cc) $(wildcard *.f95))
+$(info    EXES are $(EXES))
+
+default: all
+
+all: $(EXES)
+    
 hello: hello.o
 	$(MPICXX) -o hello.exe hello.o $(LDFLAGS)
 

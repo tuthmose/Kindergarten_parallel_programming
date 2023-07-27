@@ -126,10 +126,9 @@ int main(int argc, char **argv)
     //generate A and b and make A diagonally dominant
     gen_jac_input(DIM, high, A, b, xo);
     
-    int rank;
+    int rank = 0;
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
-    int rank = 0;
     
     //call jacobi 
     t0 = MPI_Wtime();
